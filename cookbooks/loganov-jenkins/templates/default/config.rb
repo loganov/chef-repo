@@ -58,3 +58,4 @@ knife cookbook upload loganov-transmission -c /etc/chef/knife.rb</command>
     </hudson.plugins.git.GitPublisher>
   </publishers>
   <buildWrappers/>
+</project>
