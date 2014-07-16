@@ -4,6 +4,8 @@
 
 [TOC]
 
+#### 1. Installation
+
 ##### 1. Install the Chef Client Omnibus package.
 `root@chef-server:# curl -L https://www.opscode.com/chef/install.sh | sudo bash`
 
@@ -16,15 +18,17 @@
 ##### 4. Deploy custom Chef Server recipe.
 `root@chef-server:# chef-solo -o 'recipe[chef-server::default]'`
 
-##### 5. Login to Chef Web UI
+#### 2. Configuration
+
+##### 1. Login to Chef Web UI
 * https://fqdn-of-server
 * admin/p@ssw0rd1
 
-##### 6. Change Admin Password, Regenerate Private Key
+##### 2. Change Admin Password, Regenerate Private Key
 * Reset password on first login.
 * Select 'Regenerate Private Key'
 * Save User
 
-##### 7. Save the Admin Private Key, to admin.pem
+##### 3. Save the Admin Private Key, to admin.pem
 * Copy the newly generated private key into `'admin.pem'`
 * Store this key safely. It cannot be retrieved again without regenerating. 
