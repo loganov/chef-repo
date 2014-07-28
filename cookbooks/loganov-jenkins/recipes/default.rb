@@ -21,8 +21,8 @@ jenkins_plugin 'scm-sync-configuration' do
 	action :install
 end
 
-jenkins_user 'gweaver' do
-  full_name    'Gregory Weaver'
-  email        'gw@loganov.com'
-  public_keys  ['tbd']
-end
+#jenkins_user 'gweaver' do
+#  full_name    'Gregory Weaver'
+#  email        'gw@loganov.com'
+#  public_keys  ['tbd']
+#end
