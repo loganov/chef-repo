@@ -17,6 +17,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     provider.api_key = ENV['DIGITAL_OCEAN_API_KEY']
   end
 
+#  config.vm.box = "box-cutter/centos510"
+  config.vm.box = 'digital_ocean'
+  config.vm.box_url = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"
   config.omnibus.chef_version = :latest
 
   config.vm.define "jenkins2" do |node|
@@ -31,7 +34,34 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       chef.add_role('loganov-base')
       chef.add_recipe('loganov-jenkins')
     end
+  end
 
+  config.vm.define "apache2" do |node|
+    node.vm.hostname = 'apache2.loganov.com'
+
+    node.vm.provision :chef_client do |chef|
+      chef.chef_server_url = 'https://chef.loganov.com:443'
+      chef.validation_key_path = 'validation.pem'
+      chef.validation_client_name = 'chef-validator'
+      chef.delete_node = true
+      chef.delete_client = true
+      chef.add_role('loganov-base')
+      chef.add_recipe('loganov-apache2')
+    end
+  end
+
+  config.vm.define "wordpress" do |node|
+    node.vm.hostname = 'jenkins2.loganov.com'
+
+    node.vm.provision :chef_client do |chef|
+      chef.chef_server_url = 'https://chef.loganov.com:443'
+      chef.validation_key_path = 'validation.pem'
+      chef.validation_client_name = 'chef-validator'
+      chef.delete_node = true
+      chef.delete_client = true
+      chef.add_role('loganov-base')
+      chef.add_recipe('loganov-wordpress')
+    end
   end
 
 end
