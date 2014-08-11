@@ -1,10 +1,32 @@
 Tasks
 -----
-1.) Create Kickstart file.
+1.) Modifify /home/weaverg/anaconda-kickstart.ks to suit needs.
+* Modify image to include KS file.
 2.) Create a set of recipes that can be used on RHEL and Debian. -> Written in new Resource/Provider
 3.) Add custom packages to mirror for:
 * VLC
 4.) Automated build via Jenkins, to generate golden ISOs.
+5.) Auto generate default comments for Loganov Industries LLC.
+6.) Auto generate Vagrantfile based off of loganov-NAME, expression. 
+7.) Refactor loganov-client-workstation:: repos to loganov-yum::epel, loganov-yum::elrepo, etc.
+8.) Find a way to find inline comments in source code and export them to a .md file then to .html. (solving: double typing the explanation of your code is bullshit.)
+9.) Also, generate basic file structure, Vagrant file with proper instance name. etc. etc.
+10.) Move repo declarations to individual cookbooks - Steam, creates steam_fedora19. Chrome creates google-chrome, etc.
+
+Recipes
+-------
+default        - OHAI-based branching, calls other recipes.
+packages       - repo-available packages
+package-groups - RHEL Package directives
+repos          - 3rd Party Yum Repositories
+source         - 3rd party packages, source or binaries.
+
+Dependencies
+------------
+yumgroup - `yum installgroup XYZ`
+
+
+### Round One
 
 Kickstart (ks.cfg)
   *Optional - modded image, to have chef-client
@@ -80,7 +102,7 @@ desktop vs. cloud attribute
 * download and import key.asc
 * download and localinstall package
 
-##### Dependencies
+##### e 
 * kernel-devel
 * `export KERN_DIR`
 
@@ -98,8 +120,8 @@ desktop vs. cloud attribute
 * both LXC and QEMU are installed by default
 
 ##### Plugins
-* virtual-box plugin - True/False (vagrant-virtualbox)
-* digitalocean - True/False (vagrant-digital_ocean)
+* virtual-libvirt plugin - True/False (vagrant-libvirt)
+* digitalocean - True/False (vagrant-digital_ocean) --> PIN TO VERSION: 0.5.5
 * kvm - True/False
 
 #### Google Chrome
