@@ -1,8 +1,10 @@
 Tasks
 -----
 1.) Create Kickstart file.
-2.) Create a set of recipes that can be used on RHEL and Debian.
-3.) 
+2.) Create a set of recipes that can be used on RHEL and Debian. -> Written in new Resource/Provider
+3.) Add custom packages to mirror for:
+* VLC
+4.) Automated build via Jenkins, to generate golden ISOs.
 
 Kickstart (ks.cfg)
   *Optional - modded image, to have chef-client
@@ -45,9 +47,11 @@ desktop vs. cloud attribute
 #### `mkdir /mnt/Incoming`
 
 #### `git`
+
 #### chef-client
 * `curl -L https://www.opscode.com/chef/install.sh | bash`
 * `git config --global user.name and user.email`
+
 #### `yum install samba`
 * samba conf file
 * firewall port
@@ -56,6 +60,7 @@ desktop vs. cloud attribute
 
 #### `nvidia driver`
 * reboot
+
 #### `/etc/default/grub`
 * add IOAPIC work around for broken 990FX sabertooth.
 * iommu=soft
@@ -74,20 +79,24 @@ desktop vs. cloud attribute
 #### VirtualBox
 * download and import key.asc
 * download and localinstall package
+
 ##### Dependencies
 * kernel-devel
 * `export KERN_DIR`
 
 #### vagrant
 * package download and install
+
 ##### Dependencies
 * libxslt
 * libxml2
 * libvirt-dev
 * VIRTUALBOX - VBoxManage
 * Digtal ocean .box image
+
 #### `yum groupinstall "Virtualization Host"`
 * both LXC and QEMU are installed by default
+
 ##### Plugins
 * virtual-box plugin - True/False (vagrant-virtualbox)
 * digitalocean - True/False (vagrant-digital_ocean)
@@ -102,6 +111,12 @@ desktop vs. cloud attribute
 
 #### `sudo yum groupinstall "Development Tools"`
 
+#### VLC
+* `install RPM Fusion Repo / RPMForge`
+* `install NUX Desktop Repo`
+*  `yum install vlc`
+
+
 #### tweaks
 * rename 'home' icon to 'Home' on desktop. 
 * .desktop files for Sublime, Steam, Terminal
@@ -112,5 +127,9 @@ desktop vs. cloud attribute
 #### hosts file
 * ip addresses of static boxes.
 
+#### ClamAV w/ GUI
+* gui
+* avscan
+* cron to auto-scan
 
 #### cpufreq auto installed
